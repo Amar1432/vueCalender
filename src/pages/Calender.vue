@@ -1,8 +1,6 @@
 <template>
-  <div
-    class="container mx-auto bg-pink-400 p-5 font-bold rounded text-white inline-block"
-  >
-    <h1 class="inline-block text-4xl">Calender</h1>
+  <div class="text-center">
+    <AppTitleBar>Calender</AppTitleBar>
   </div>
   <section class="w-3/4 mx-auto">
     <div class="flex justify-between text-2xl p-4">
@@ -10,7 +8,7 @@
       <h1 class="font-bold">{{ currentYear }}</h1>
     </div>
   </section>
-  <section class="mx-auto w-3/4">
+  <section class="mx-auto w-3/4 text-center">
     <div class="flex place-content-center mt-5">
       <h2
         v-for="day in days"
@@ -21,7 +19,7 @@
       </h2>
     </div>
   </section>
-  <section class="w-3/4 mx-auto">
+  <section class="w-3/4 mx-auto text-center">
     <div class="flex flex-wrap">
       <p
         v-for="i in startDay"
@@ -54,61 +52,27 @@
       </button>
     </div>
   </section>
-
-  {{}}
 </template>
 
 <script>
-import { computed, ref } from "vue"
+import useCalenderFeature from "../composables/Calender"
+import AppTitleBar from "../components/AppTitleBar.vue"
 export default {
+  components: { AppTitleBar },
   setup() {
-    const days = ref(["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"])
-    const months = ref([
-      "January",
-      "February",
-      "March",
-      "April",
-      "May",
-      "June",
-      "July",
-      "August",
-      "September",
-      "October",
-      "November",
-      "December"
-    ])
+    const {
+      days,
+      months,
+      currentDate,
+      currentMonth,
+      currentYear,
+      isToday,
+      countDays,
+      startDay,
+      next,
+      prev
+    } = useCalenderFeature()
 
-    const currentDate = ref(new Date().getDate())
-    const currentMonth = ref(new Date().getMonth())
-    const currentYear = ref(new Date().getFullYear())
-    const isToday = date => {
-      return (
-        new Date().toDateString() ==
-        new Date(currentYear.value, currentMonth.value, date).toDateString()
-      )
-    }
-    const countDays = computed(() => {
-      return new Date(currentYear.value, currentMonth.value + 1, 0).getDate()
-    })
-    const startDay = computed(() => {
-      return new Date(currentYear.value, currentMonth.value, 1).getDay()
-    })
-    const next = () => {
-      if (currentMonth.value == 11) {
-        currentMonth.value = 0
-        currentYear.value++
-      } else {
-        currentMonth.value++
-      }
-    }
-    const prev = () => {
-      if (currentMonth.value == 0) {
-        currentMonth.value = 11
-        currentYear.value--
-      } else {
-        currentMonth.value--
-      }
-    }
     return {
       days,
       months,
