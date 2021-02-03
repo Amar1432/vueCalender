@@ -31,7 +31,7 @@ export default {
       const task = () => {
         inputText.value = e.target.value
       }
-      debounce(task, 500)
+      debounce(task)
     }
 
     return { inputText, markedText, update }

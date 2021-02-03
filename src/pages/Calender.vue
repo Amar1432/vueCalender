@@ -19,7 +19,7 @@
       </h2>
     </div>
   </section>
-  <section class="w-3/4 mx-auto text-center">
+  <section class="w-3/4 mx-auto text-center h-64">
     <div class="flex flex-wrap">
       <p
         v-for="i in startDay"
@@ -36,16 +36,16 @@
       </p>
     </div>
   </section>
-  <section class="w-3/4 mx-auto mt-5">
+  <section class="w-3/4 mx-auto mt-10">
     <div class="flex justify-between">
       <button
-        class="bg-pink-500 text-lg font-extrabold px-5 py-2 text-white rounded hover:bg-pink-700"
+        class="btn"
         @click="prev"
       >
         Prev
       </button>
       <button
-        class="bg-pink-500 text-lg font-extrabold px-5 py-2 text-white rounded hover:bg-pink-700"
+        class="btn"
         @click="next"
       >
         Next
@@ -89,4 +89,3 @@ export default {
 }
 </script>
 
-<style></style>

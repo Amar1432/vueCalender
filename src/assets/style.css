@@ -1,3 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.btn {
+    @apply bg-pink-500 text-lg font-extrabold px-5 py-2 text-white rounded hover:bg-pink-700
+}
+.calcButton {
+    @apply rounded-full shadow w-16 h-16 text-3xl bg-gray-500 text-white font-bold focus:outline-none hover:bg-red-400
+}
