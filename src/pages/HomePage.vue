@@ -11,12 +11,11 @@ import auth from '../services/auth/auth.js'
 export default {
   name: 'HomePage',
   setup() {
-    const userEmail = ref(null)
     const {authState, user} = auth()
     onMounted(()=> {
       authState()
     })
-    return {userEmail,user}
+    return {user}
   }
 }
 </script>

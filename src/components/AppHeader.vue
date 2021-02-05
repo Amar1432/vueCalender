@@ -32,6 +32,7 @@ export default {
       { name: "MarkDown", title: "MarkDown" },
       { name: "Slider", title: "Slider" },
       { name: "Calculator", title: "Calculator" },
+      { name: "Chat", title: "Chat" },
       // { name: "Example", title: "Example" },
     ])
     const logout = async () => {

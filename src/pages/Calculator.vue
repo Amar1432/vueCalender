@@ -34,8 +34,9 @@
 </template>
 
 <script>
-import { onMounted, onUnmounted, ref } from "vue"
+import { ref } from "vue"
 import AppTitleBar from "../components/AppTitleBar.vue"
+import useWindowEvent from "../hooks/useWindowEvent.js"
 export default {
   components: { AppTitleBar },
   setup() {
@@ -77,22 +78,11 @@ export default {
       }
     }
 
-    const clear = () => {
-      expression.value = "0"
-    }
+    const clear = () => (expression.value = "0")
 
-    const handleKeydown = e => {
-      console.log(e.key)
-      buttonPressed(e.key)
-    }
+    const handleKeydown = e => buttonPressed(e.key)
 
-    onMounted(() => {
-      window.addEventListener("keydown", handleKeydown)
-    })
-
-    onUnmounted(() => {
-      window.removeEventListener("keydown", handleKeydown)
-    })
+    useWindowEvent("keydown", handleKeydown)
 
     return { expression, buttonPressed }
   }

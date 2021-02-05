@@ -8,6 +8,13 @@ const auth = () => {
   const user = ref(null)
   const isLoggedIn = ref(false)
 
+
+  if(user) {
+    console.log(user.uid);
+} else {
+    console.log('No Users Here');
+}
+
   // AuthState change method to track whether a user is logged in or not
   const authState = () => {
     firebase.auth().onAuthStateChanged(userCred => {
