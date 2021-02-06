@@ -1,29 +1,25 @@
 import { ref } from "vue"
 import firebase from "../../utils/firebase.js"
+import store from "../../store/index.js"
 
 const auth = () => {
   //Variables
   let provider = new firebase.auth.GoogleAuthProvider()
   const isLoggingIn = ref(false)
   const user = ref(null)
-  const isLoggedIn = ref(false)
-
-
-  if(user) {
-    console.log(user.uid);
-} else {
-    console.log('No Users Here');
-}
+  // const isLoggedIn = ref(false)
 
   // AuthState change method to track whether a user is logged in or not
   const authState = () => {
     firebase.auth().onAuthStateChanged(userCred => {
       if (userCred) {
-        user.value = userCred
-        isLoggedIn.value = true
+        store.commit("setUserData", userCred)
+        store.commit("setLogin", true)
+        // user.value = userCred
       } else {
-        isLoggedIn.value = false
-        user.value = null
+        store.commit("setUserData", {})
+        store.commit("setLogin", false)
+        // user.value = null
       }
     })
   }
@@ -70,7 +66,15 @@ const auth = () => {
   }
 
   // Returned methods and properties
-  return { authState, signIn, signUp, isLoggingIn, signOut, user, isLoggedIn,googleSignIn }
+  return {
+    authState,
+    signIn,
+    signUp,
+    isLoggingIn,
+    signOut,
+    user,
+    googleSignIn
+  }
 }
 
 export default auth

@@ -36,7 +36,7 @@
         </form>
         <p class="text-center p-5">Or</p>
         <div class="text-center">
-          <GoogleLogin @close="close"/>
+          <GoogleLogin @close="close" />
         </div>
       </div>
     </div>
@@ -47,10 +47,11 @@
 import { ref } from "vue"
 import auth from "../services/auth/auth.js"
 import GoogleLogin from "../components/GoogleLogin.vue"
+import { useStore } from 'vuex'
 export default {
-  components: {GoogleLogin},
-  emits: ["close-modal"],
-  setup(props, { emit }) {
+  components: { GoogleLogin },
+  setup() {
+    const store = useStore()
     const email = ref("")
     const password = ref("")
     const { signIn, isLoggingIn } = auth()
@@ -59,7 +60,7 @@ export default {
       close()
     }
     const close = () => {
-      emit("close-modal")
+      store.commit('setLoginModal',false)
     }
     return { email, password, handleSubmit, close, isLoggingIn }
   }

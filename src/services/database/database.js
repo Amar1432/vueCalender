@@ -1,26 +1,22 @@
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import firebase from "../../utils/firebase"
+import store from "../../store/index.js"
+
 
 const database = () => {
   const db = firebase.firestore()
   const collection = db.collection("messages")
-  const uid = ref(null)
-  const userData = ref([])
+  const msgList = ref([])
+  
+  const uid = computed(() => store.state.userData.uid)
 
-  firebase.auth().onAuthStateChanged(userData => {
-    if (userData) {
-      uid.value = userData.uid
-    } else {
-      uid.value = null
-    }
-  })
 
   const getMessages = () => {
     collection.onSnapshot(snapshot => {
-      userData.value = []
-        return snapshot.forEach((msg)=> {
-            userData.value.push(msg)
-        })
+      msgList.value = []
+      return snapshot.forEach(msg => {
+        msgList.value.push(msg)
+      })
     })
   }
 
@@ -32,7 +28,7 @@ const database = () => {
     }
   }
 
-  return { getMessages, uid, sendMessage, userData }
+  return { getMessages, sendMessage, msgList }
 }
 
 export default database

@@ -6,15 +6,18 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue'
+import { computed, onMounted, ref } from 'vue'
 import auth from '../services/auth/auth.js'
+import { useStore } from 'vuex'
 export default {
   name: 'HomePage',
   setup() {
-    const {authState, user} = auth()
+    const store = useStore()
+    const {authState} = auth()
     onMounted(()=> {
       authState()
     })
+    const user = computed(()=> store.state.userData)
     return {user}
   }
 }

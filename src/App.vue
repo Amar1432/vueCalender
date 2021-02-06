@@ -1,22 +1,24 @@
 <template>
-  <AppHeader @showModal="viewModel = true" :isLoggedIn="isLoggedIn"></AppHeader>
+  <AppHeader/>
   <router-view />
-  <LoginModal @close-modal="viewModel = false" v-if="viewModel"></LoginModal>
+  <LoginModal v-if="viewModel"></LoginModal>
 </template>
 
 <script>
-import { onMounted, ref } from "vue"
+import { computed, onMounted, ref } from "vue"
 import AppHeader from "./components/AppHeader.vue"
 import LoginModal from "./components/LoginModal.vue"
 import auth from "./services/auth/auth.js"
+import { useStore } from "vuex"
 export default {
   setup() {
-    const viewModel = ref(false)
-    const { isLoggedIn, authState } = auth()
+    const store = useStore()
+    const viewModel = computed(() => store.state.showModal)
+    const { authState } = auth()
     onMounted(() => {
       authState()
     })
-    return { viewModel, isLoggedIn }
+    return { viewModel,store }
   },
   name: "App",
   components: {

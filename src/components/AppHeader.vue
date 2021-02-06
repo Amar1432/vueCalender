@@ -9,7 +9,7 @@
       :to="{ name: page.name }"
       >{{ page.title }}</router-link
     >
-    <div class="cursor-pointer" @click="$emit('show-modal')" v-if="!isLoggedIn">
+    <div class="cursor-pointer" @click="store.commit('setLoginModal',true)" v-if="!isLoggedIn">
       Login
     </div>
     <div class="cursor-pointer" @click="logout" v-else>
@@ -19,12 +19,15 @@
 </template>
 
 <script>
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import auth from "../services/auth/auth.js"
+import { useStore } from 'vuex'
+
 export default {
-  props: ["isLoggedIn"],
+  // props: ["isLoggedIn"],
   emits: ["show-modal"],
   setup() {
+    const store = useStore()
     const { signOut } = auth()
     const pageList = ref([
       { name: "HomePage", title: "Home" },
@@ -42,7 +45,8 @@ export default {
         console.log(error)
       }
     }
-    return { pageList, logout }
+    const isLoggedIn = computed(()=>store.state.isLoggedIn) 
+    return { pageList, logout, isLoggedIn,store }
   }
 }
 </script>
