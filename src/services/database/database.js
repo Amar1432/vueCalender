@@ -12,7 +12,7 @@ const database = () => {
 
 
   const getMessages = () => {
-    collection.onSnapshot(snapshot => {
+    collection.orderBy('createdAt','desc').limit(25).onSnapshot(snapshot => {
       msgList.value = []
       return snapshot.forEach(msg => {
         msgList.value.push(msg)
@@ -22,7 +22,7 @@ const database = () => {
 
   const sendMessage = async msg => {
     try {
-      await collection.doc().set({ userId: uid.value, text: msg })
+      await collection.doc().set({ userId: uid.value, text: msg, createdAt: firebase.firestore.FieldValue.serverTimestamp() })
     } catch (error) {
       console.log(error)
     }

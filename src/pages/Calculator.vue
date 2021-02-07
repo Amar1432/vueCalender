@@ -2,11 +2,11 @@
   <div class="text-center">
     <AppTitleBar>Calculator</AppTitleBar>
   </div>
-  <div class="flex w-full">
-    <div class="m-auto border p-5 bg-gray-300 rounded-md">
+  <div class="flex w-full justify-center">
+    <div class="border p-5 bg-gray-300 rounded-md">
       <div class="w-full h-14 mb-8">
         <h1
-          class="text-3xl my-4 p-2 border-2 text-right bg-gray-50 overflow-x-scroll"
+          class="text-3xl my-4 px-2 border-2 text-right bg-gray-50 overflow-x-scroll"
         >
           {{ expression }}
         </h1>

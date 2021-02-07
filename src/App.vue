@@ -32,4 +32,12 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;
 }
+/* html {
+  overflow: hidden;
+  overflow-x: hidden;
+} */
+::-webkit-scrollbar {
+    width: 0px;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 </style>
