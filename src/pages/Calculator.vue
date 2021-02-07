@@ -24,8 +24,8 @@
         <button class="calcButton" @click="buttonPressed('8')">8</button>
         <button class="calcButton" @click="buttonPressed('9')">9</button>
         <button class="calcButton" @click="buttonPressed('*')">*</button>
-        <button class="calcButton" @click="buttonPressed('0')">0</button>
         <button class="calcButton" @click="buttonPressed('c')">C</button>
+        <button class="calcButton" @click="buttonPressed('0')">0</button>
         <button class="calcButton" @click="buttonPressed('=')">=</button>
         <button class="calcButton" @click="buttonPressed('/')">/</button>
       </div>
