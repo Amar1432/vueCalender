@@ -55,8 +55,8 @@ export default {
   setup() {
     const store = useStore()
     const isModalOpen = computed(() => store.state.showModal)
-    const email = ref("")
-    const password = ref("")
+    const email = ref("test1@email.com")
+    const password = ref("123456")
     const { signIn, isLoggingIn } = auth()
     const handleSubmit = async () => {
       await signIn(email.value, password.value)
