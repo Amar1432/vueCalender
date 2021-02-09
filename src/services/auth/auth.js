@@ -15,6 +15,7 @@ const auth = () => {
       if (userCred) {
         store.commit("setUserData", userCred)
         store.commit("setLogin", true)
+        store.commit("setLoginModal", false)
         // user.value = userCred
       } else {
         store.commit("setUserData", {})

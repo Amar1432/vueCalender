@@ -60,7 +60,6 @@ export default {
     const { signIn, isLoggingIn } = auth()
     const handleSubmit = async () => {
       await signIn(email.value, password.value)
-      close()
     }
     const close = () => {
       store.commit("setLoginModal", false)

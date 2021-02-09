@@ -1,7 +1,10 @@
+import { computed } from "vue"
+
 export default function(next, store) {
-  if (!store.state.isLoggedIn) {
+  const isLoggedIn = computed(() => store.state.isLoggedIn)
+  if (!isLoggedIn.value) {
     next("/")
-    store.commit("setLoginModal", true)
+    store.commit("setLoginModal",true)
   } else {
     next()
   }
