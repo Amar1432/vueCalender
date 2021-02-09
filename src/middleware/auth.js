@@ -6,7 +6,7 @@ export default function(next, store) {
     next("/")
     store.commit("setLoginModal", true)
   } else {
+    store.commit("setLoginModal", true)
     next()
   }
-  // console.log('from middleware');
 }
