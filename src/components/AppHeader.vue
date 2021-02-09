@@ -36,6 +36,7 @@ export default {
       { name: "Slider", title: "Slider" },
       { name: "Calculator", title: "Calculator" },
       { name: "Chat", title: "Chat" },
+      { name: "UserCrud", title: "UserCrud" },
       // { name: "Example", title: "Example" },
     ])
     const logout = async () => {

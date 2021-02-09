@@ -7,7 +7,7 @@ const auth = () => {
   let provider = new firebase.auth.GoogleAuthProvider()
   const isLoggingIn = ref(false)
   const user = ref(null)
-  // const isLoggedIn = ref(false)
+
 
   // AuthState change method to track whether a user is logged in or not
   const authState = () => {

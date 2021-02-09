@@ -5,6 +5,7 @@ import MarkDown from "../pages/MarkDown.vue"
 import Slider from "../pages/Slider.vue"
 import Calculator from "../pages/Calculator.vue"
 import Chat from "../pages/Chat.vue"
+import UserCrud from "../pages/UserCrud.vue"
 import store from "../store/index.js"
 // import Example from "../pages/Example.vue"
 
@@ -43,6 +44,12 @@ const routes = [
     meta: { middleware: "auth" },
     name: "Chat",
     component: Chat
+  },
+  {
+    path: "/user-crud",
+    name: "UserCrud",
+    component: UserCrud,
+    meta: { middleware: "auth" }
   }
   // {
   //   path: '/example',

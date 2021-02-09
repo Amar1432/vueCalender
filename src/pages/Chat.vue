@@ -9,16 +9,17 @@
           <div
             v-for="msg in msgList.slice().reverse()"
             :key="msg"
-            class="flex"
-            :class="{ 'justify-end': msg.data().userId == uid }"
+            class="flex flex-col"
+            :class="{ 'items-end': msg.data().userId == uid }"
           >
+          <small v-if="msg.data().userId != uid" class="ml-3 text-gray-500">{{msg.data().name}}</small>
             <h1
-              class="px-3 py-2 my-1 max-w-4/6 rounded-full border text-white bg-green-500 mx-2 font-bold"
-              :class="{ 'bg-pink-500 text-white': msg.data().userId == uid }"
+              ref="dummy"
+              class="px-3 py-2 mb-1 rounded-full border text-white bg-green-500 mx-2 font-bold self-start max-w-4/6"
+              :class="{ 'bg-pink-500 text-white self-end': msg.data().userId == uid }"
             >
               {{ msg.data().text }}
             </h1>
-            <div ref="dummy"></div>
           </div>
         </div>
         <div v-else>
@@ -52,9 +53,10 @@ import { useStore } from "vuex"
 export default {
   components: { AppTitleBar },
   setup() {
-    const msg = ref("")
+    const msg = ref('')
     const store = useStore()
     const dummy = ref(null)
+    const isLoggedIn = computed(()=> store.state.isLoggedIn)
 
     const uid = computed(() => store.state.userData.uid)
     const { sendMessage, getMessages, msgList } = database()
@@ -62,11 +64,10 @@ export default {
     const send = () => {
       sendMessage(msg.value)
       msg.value = ""
-      // dummy.value.current.scrollIntoView({ behavior: "smooth" })
     }
 
     getMessages()
-    return { msg, send, msgList, uid, dummy }
+    return { msg, send, msgList, uid, dummy, isLoggedIn }
   }
 }
 </script>

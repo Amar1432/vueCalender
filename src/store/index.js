@@ -19,9 +19,6 @@ const store = createStore({
     setLoginModal(state,data) {
       state.showModal = data
     },
-    justLog() {
-        console.log('I am from mutation');
-    }
   },
 
 })

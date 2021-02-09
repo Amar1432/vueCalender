@@ -9,6 +9,7 @@ const database = () => {
   const msgList = ref([])
   
   const uid = computed(() => store.state.userData.uid)
+  const name = computed(() => store.state.userData.displayName)
 
 
   const getMessages = () => {
@@ -22,13 +23,13 @@ const database = () => {
 
   const sendMessage = async msg => {
     try {
-      await collection.doc().set({ userId: uid.value, text: msg, createdAt: firebase.firestore.FieldValue.serverTimestamp() })
+      await collection.doc().set({ userId: uid.value, text: msg, createdAt: firebase.firestore.FieldValue.serverTimestamp(), name: name.value || 'Unknown'})
     } catch (error) {
       console.log(error)
     }
   }
 
-  return { getMessages, sendMessage, msgList }
+  return { getMessages, sendMessage, msgList, name }
 }
 
 export default database
