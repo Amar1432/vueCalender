@@ -9,3 +9,7 @@
 .calcButton {
     @apply rounded-full shadow w-16 h-16 text-3xl bg-gray-500 text-white font-bold focus:outline-none hover:bg-red-400
 }
+
+.actionButton {
+    @apply border px-4 py-2 text-white font-bold rounded-md mx-1
+}

@@ -5,7 +5,7 @@ import MarkDown from "../pages/MarkDown.vue"
 import Slider from "../pages/Slider.vue"
 import Calculator from "../pages/Calculator.vue"
 import Chat from "../pages/Chat.vue"
-import UserCrud from "../pages/UserCrud.vue"
+import UserCrud from "../pages/user-crud/UserCrud.vue"
 import store from "../store/index.js"
 // import Example from "../pages/Example.vue"
 
